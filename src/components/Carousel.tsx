@@ -60,8 +60,6 @@ const Carousel: React.FC<Props> = ({
     });
   };
 
-  const visibleImages = images.slice(prev, prev + frameSize);
-
   return (
     <div className="Carousel">
       <button
@@ -72,18 +70,22 @@ const Carousel: React.FC<Props> = ({
       >
         ⟵
       </button>
-      <ul className="Carousel__list">
-        {visibleImages.map((image: string, index: number) => (
-          <li className="Carousel__item" key={`${image}-${prev + index}`}>
-            <img
-              src={image}
-              alt={`Slide ${prev + index + 1}`}
-              width={itemWidth}
-              style={{ transitionDuration: `${animationDuration}ms` }}
-            />
-          </li>
-        ))}
-      </ul>
+
+      <div className="Carousel__frame" style={{ width: itemWidth * frameSize }}>
+        <ul
+          className="Carousel__list"
+          style={{
+            transform: `translateX(-${prev * itemWidth}px)`,
+            transitionDuration: `${animationDuration}ms`,
+          }}
+        >
+          {images.map((image: string, index: number) => (
+            <li className="Carousel__item" key={image}>
+              <img src={image} alt={`Slide ${index + 1}`} width={itemWidth} />
+            </li>
+          ))}
+        </ul>
+      </div>
 
       <button
         data-cy="next"

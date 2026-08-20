@@ -1,24 +1,24 @@
-// style go here
 .Carousel {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 30px;
+
+  &__frame {
+    overflow: hidden;
+  }
 
   &__list {
     display: flex;
-    justify-content: center;
     list-style: none;
-    gap: 20px;
     margin: 0;
     padding: 0;
+    transition-property: transform;
+  }
+
+  &__item {
+    flex-shrink: 0;
   }
 
   &__button {
-    height: 100%;
-    border-color: transparent;
-    background-color: transparent;
-    font-size: 30px;
-    font-weight: 800;
+    cursor: pointer;
   }
 }
